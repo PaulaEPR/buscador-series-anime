@@ -5,6 +5,8 @@
 const input = document.querySelector('.js-input');
 const button = document.querySelector('.js-submit');
 const main = document.querySelector('.js-main');
+const imgDefault =
+  'https://via.placeholder.com/225x350/fff/666/?text=No+Picture';
 
 /* --- Functions --- */
 
@@ -22,14 +24,24 @@ function createBkgImgArticle(title, imgUrl) {
   const newTitle = document.createTextNode(title);
   thisChild.appendChild(newTitle);
   thisMother.appendChild(thisChild);
-  thisMother.style.background = `url('${imgUrl}') center bottom / cover no-repeat`;
+  setBkg(thisMother, imgUrl);
   return thisMother;
+}
+
+//Set background
+function setBkg(element, imgUrl) {
+  if (imgUrl.includes('qm_50.gif')) {
+    element.style.background = `url('${imgDefault}') center bottom / cover no-repeat`;
+  } else {
+    element.style.background = `url('${imgUrl}') center bottom / cover no-repeat`;
+  }
 }
 
 //Listen to events in the search button
 function handleChangeInput(event) {
   event.preventDefault();
-  main.innerHTML = '';
+  const eraseResults = document.querySelector('.js-results');
+  main.removeChild(eraseResults);
   getData();
 }
 
@@ -43,11 +55,13 @@ function getData() {
     .then((response) => response.json())
     .then((data) => {
       const result = data.results;
+      const results = createTag('section', 'js-results');
       for (const item of result) {
         const title = item.title;
         const imgUrl = item.image_url;
         const article = createBkgImgArticle(title, imgUrl);
-        main.appendChild(article);
+        results.appendChild(article);
+        main.appendChild(results);
       }
     });
 }
