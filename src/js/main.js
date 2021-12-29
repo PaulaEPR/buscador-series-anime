@@ -8,7 +8,9 @@ const main = document.querySelector('.js-main');
 const imgDefault =
   'https://via.placeholder.com/225x350/fff/666/?text=No+Picture';
 
-/* --- Functions --- */
+const favorite = [];
+
+/* --- Create-sections Functions --- */
 
 //Create HTML tag
 function createTag(tag, className) {
@@ -30,38 +32,58 @@ function createBkgImgArticle(title, imgUrl) {
 
 //Set background
 function setBkg(element, imgUrl) {
-  if (imgUrl.includes('qm_50.gif')) {
+  if (imgUrl.includes('qm_50.gif') || imgUrl.includes('questionmark')) {
     element.style.background = `url('${imgDefault}') center bottom / cover no-repeat`;
   } else {
     element.style.background = `url('${imgUrl}') center bottom / cover no-repeat`;
   }
 }
 
+/* --- Event Listener Functions --- */
+
 //Listen to events in the search button
-function handleChangeInput(event) {
+function handleClickSubmit(event) {
   event.preventDefault();
   const eraseResults = document.querySelector('.js-results');
   main.removeChild(eraseResults);
   getData();
 }
 
-button.addEventListener('click', handleChangeInput);
+button.addEventListener('click', handleClickSubmit);
+
+//Listen to events in the results
+function handleClickCard(event) {
+  const selectedCard = event.currentTarget;
+  const selectedTitle = selectedCard.querySelector('.js-article-title');
+  //const favoriteSection = document.querySelector('.js-favorites');
+  selectedCard.classList.toggle('js-selected');
+  selectedTitle.classList.toggle('js-selected-title');
+}
+
+function listenerCards() {
+  const cards = document.querySelectorAll('.js-article');
+  for (const card of cards) {
+    card.addEventListener('click', handleClickCard);
+  }
+}
 
 /* --- Obtener datos de la API --- */
 
 function getData() {
-  const apiURL = `https://api.jikan.moe/v3/search/anime?q=${input.value}`;
+  const query = input.value.replace(' ', '%20');
+  const apiURL = `https://api.jikan.moe/v3/search/anime?q=${query}`;
   fetch(apiURL)
     .then((response) => response.json())
     .then((data) => {
       const result = data.results;
-      const results = createTag('section', 'js-results');
+      const resultSection = createTag('section', 'js-results');
       for (const item of result) {
         const title = item.title;
         const imgUrl = item.image_url;
         const article = createBkgImgArticle(title, imgUrl);
-        results.appendChild(article);
-        main.appendChild(results);
+        resultSection.appendChild(article);
       }
+      main.appendChild(resultSection);
+      listenerCards();
     });
 }
