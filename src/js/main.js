@@ -4,8 +4,7 @@
 
 const input = document.querySelector('.js-input');
 const button = document.querySelector('.js-submit');
-//const main = document.querySelector('.js-main');
-//const mainFav = document.querySelector('.main__fav');
+const mainFav = document.querySelector('.main__fav');
 const mainRes = document.querySelector('.main__res');
 
 const favorite = [];
@@ -72,14 +71,26 @@ function createResults() {
 }
 
 //Paint favorites
+function createFavs() {
+  eraseSection('.js-favorites', mainFav);
+  const favSection = createTag('section', 'js-favorites');
+  for (const item of favorite) {
+    const article = createBkgImgArticle(
+      item.title,
+      item.image_url,
+      item.mal_id
+    );
+    favSection.appendChild(article);
+  }
+  mainFav.appendChild(favSection);
+}
 
 /* --- Event Listener Functions --- */
 
 //Listen to events in the search button
 function handleClickSubmit(event) {
   event.preventDefault();
-  const eraseResults = document.querySelector('.js-results');
-  mainRes.removeChild(eraseResults);
+  eraseSection('.js-results', mainRes);
   getData();
 }
 
@@ -89,26 +100,13 @@ button.addEventListener('click', handleClickSubmit);
 function handleClickCard(event) {
   const selectedCard = event.currentTarget;
   const selectedTitle = selectedCard.querySelector('.js-article-title');
-  //const favoriteSection = document.querySelector('.js-favorites');
+  const selectedId = selectedCard.dataset.id;
 
   selectedCard.classList.toggle('js-selected');
   selectedTitle.classList.toggle('js-selected-title');
 
-  const selectedId = selectedCard.dataset.id;
-  const selectedFav = result.find(
-    (item) => item.mal_id === parseInt(selectedId)
-  );
-
-  checkFavorite(selectedFav);
-}
-
-//Check if the selected favorite is already in the favorite array
-function checkFavorite(selectedFav) {
-  if (favorite.find((item) => item.mal_id === selectedFav.mal_id)) {
-    favorite.pop(selectedFav);
-  } else {
-    favorite.push(selectedFav);
-  }
+  checkFavorite(selectedId);
+  createFavs();
 }
 
 function listenerCards() {
@@ -116,4 +114,31 @@ function listenerCards() {
   for (const card of cards) {
     card.addEventListener('click', handleClickCard);
   }
+}
+
+/* --- Helper Functions --- */
+
+//Check favorites
+function checkFavorite(selectedId) {
+  //Check if it's already in the favorites array
+  const selectedFav = favorite.find(
+    (item) => item.mal_id === parseInt(selectedId)
+  );
+  //Search it in the results and add or remove from favorites array
+  if (selectedFav === undefined) {
+    const selectedRes = result.find(
+      (item) => item.mal_id === parseInt(selectedId)
+    );
+    favorite.push(selectedRes);
+  } else {
+    const foundIndex = favorite.findIndex(
+      (item) => item.mal_id === parseInt(selectedId)
+    );
+    favorite.splice(foundIndex, 1);
+  }
+}
+
+//Erase a section from the HTML
+function eraseSection(childClass, motherName) {
+  motherName.removeChild(document.querySelector(childClass));
 }
