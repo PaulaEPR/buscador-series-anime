@@ -7,7 +7,7 @@ const button = document.querySelector('.js-submit');
 const mainFav = document.querySelector('.main__fav');
 const mainRes = document.querySelector('.main__res');
 
-const favorite = [];
+let favorite = [];
 let result = [];
 
 /* --- Get data form API --- */
@@ -21,6 +21,22 @@ function getData() {
       result = data.results;
       createResults();
     });
+}
+
+/* --- Local Storage --- */
+
+//Save favorites
+function saveFav() {
+  localStorage.setItem('fav', JSON.stringify(favorite));
+}
+
+//Get favorites
+function getFav() {
+  const localStorageFav = localStorage.getItem('fav');
+  if (localStorageFav !== null) {
+    favorite = JSON.parse(localStorageFav);
+    createFavs();
+  }
 }
 
 /* --- Create-sections Functions --- */
@@ -107,6 +123,7 @@ function handleClickCard(event) {
 
   checkFavorite(selectedId);
   createFavs();
+  saveFav();
 }
 
 function listenerCards() {
@@ -142,3 +159,8 @@ function checkFavorite(selectedId) {
 function eraseSection(childClass, motherName) {
   motherName.removeChild(document.querySelector(childClass));
 }
+
+/* --- Start --- */
+
+//Recover favorites from Local Storage
+getFav();
