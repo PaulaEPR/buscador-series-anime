@@ -2,13 +2,19 @@
 
 /* --- Global Variables --- */
 
+const form = document.querySelector('.search');
 const input = document.querySelector('.js-input');
-const button = document.querySelector('.js-submit');
+//const button = document.querySelector('.js-submit');
 const mainFav = document.querySelector('.main__fav');
 const mainRes = document.querySelector('.main__res');
 
 let favorite = [];
 let result = [];
+
+/* --- Testing --- */
+
+
+
 
 /* --- Get data form API --- */
 
@@ -103,14 +109,22 @@ function createFavs() {
 
 /* --- Event Listener Functions --- */
 
-//Listen to events in the search button
+//Listen to submit event in the search form
 function handleClickSubmit(event) {
   event.preventDefault();
   eraseSection('.js-results', mainRes);
   getData();
 }
 
-button.addEventListener('click', handleClickSubmit);
+form.addEventListener('submit', handleClickSubmit);
+
+//Listen to reset event in the search form
+function handleClickReset() {
+  input.focus();
+  result = [];
+  eraseSection('.js-results', mainRes);
+}
+form.addEventListener('reset', handleClickReset);
 
 //Listen to events in the results
 function handleClickCard(event) {

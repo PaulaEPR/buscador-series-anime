@@ -1,29 +1,35 @@
 body {
-  background-color: rgb(255, 236, 220);
+  background-color: $color-gr-dark;
 }
 
 .js-main {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: minmax(225px, 1fr) 3fr;
 }
 
-.js-results,
-.js-favorite {
+.js-results {
   width: 100%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
+}
+
+.js-favorites > .js-article {
+ margin-bottom: 10px;
 }
 
 .js-article {
   width: 225px;
   height: 350px;
-  margin: 5px;
-  border: 5px solid rgb(226, 108, 11);
+  //margin: 5px;
+  border: 5px solid $color-first;
+  border-radius: 5px;
   position: relative;
   &-title {
-    color: rgb(77, 41, 11);
-    background-color: rgb(226, 108, 11);
+    color: $color-sec;
+    background-color: $color-first;
+    border-radius: 5px;
     height: 80px;
     padding: 5px;
     position: absolute;
@@ -34,11 +40,78 @@ body {
 }
 
 .js-selected {
-  border: 5px solid rgb(77, 41, 11);
+  border: 5px solid $color-sec;
   &-title {
-    color: rgb(226, 108, 11);
-    background-color: rgb(77, 41, 11);
+    color: $color-first;
+    background-color: $color-sec;
     height: 80px;
     padding: 5px;
+  }
+}
+
+/* HEADER */
+.header {
+  padding: 15px;
+  font-family: $font-titles;
+  &__title {
+    font-family: $font-titles;
+    color: $color-gr-light;
+    margin-bottom: 10px;
+  }
+}
+
+/* MAIN */
+
+.main {
+  &__fav,
+  &__res {
+    padding: 0 10px;
+  }
+  &__fav--title,
+  &__res--title {
+    font-family: $font-titles;
+    color: $color-gr-light;
+    margin-bottom: 10px;
+  }
+}
+
+/* ICONS & BUTTONS */
+
+.icon {
+  width: 12px;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  &__input {
+    outline: 2px solid $color-medium;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    &::placeholder {
+      color: $color-gr-medium;
+    }
+    &:focus {
+      outline: 2px solid $color-first;
+    }
+  }
+  &__button {
+    font-family: $font-titles;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: $color-medium;
+    outline: 2px solid $color-first;
+    &:hover {
+      background-color: $color-first;
+      outline: 2px solid $color-medium;
+    }
+    &:active {
+      background-color: $color-dark;
+    }
   }
 }

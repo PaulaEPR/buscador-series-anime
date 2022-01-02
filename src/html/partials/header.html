@@ -1,8 +1,10 @@
 <header class="header">
-  <h1 class="title">Buscador de series de anime</h1>
-  <form action="#" method="post">
-    <label for="anime-search" class="search__label">🔎</label>
-    <input type="search" name="anime-search" id="anime-search" class="search__input js-input" spellcheck="false">
-    <input type="submit" value="Buscar" class="search__button js-submit">
+  <h1 class="header__title">Buscador de animes</h1>
+  <form action="#" method="post" class="search">
+    <input type="search" name="anime-search" id="anime-search" class="search__input js-input" placeholder="Naruto..." spellcheck="false" minlength="3" autofocus required>
+    <button type="submit" class="search__button js-submit"><img src="./assets/images/icons/search.svg" alt="reset" class="icon">Buscar</button>
+    <button type="reset" class="search__button"><img src="./assets/images/icons/reset.svg" alt="reset" class="icon">Reset</button>
+
+    
   </form>
 </header>
