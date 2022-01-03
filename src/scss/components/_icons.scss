@@ -3,7 +3,11 @@
     width: 12px;
   }
   &--section {
-    width: 20px;
+    width: 16px;
+    padding: 5px 0;
+    @include tablet {
+      width: 20px;
+    }
   }
 }
 

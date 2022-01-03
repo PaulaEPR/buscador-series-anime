@@ -11,8 +11,6 @@ const deleteAllFav = document.querySelector('.js-delete-all');
 let favorite = [];
 let result = [];
 
-/* --- Testing --- */
-
 /* --- Get data form API --- */
 
 function getData() {
