@@ -2,19 +2,16 @@
 
 /* --- Global Variables --- */
 
-const form = document.querySelector('.search');
+const form = document.querySelector('.js-search');
 const input = document.querySelector('.js-input');
-//const button = document.querySelector('.js-submit');
-const mainFav = document.querySelector('.main__fav');
-const mainRes = document.querySelector('.main__res');
+const mainFav = document.querySelector('.js-main-fav');
+const mainRes = document.querySelector('.js-main-res');
+const deleteAllFav = document.querySelector('.js-delete-all');
 
 let favorite = [];
 let result = [];
 
 /* --- Testing --- */
-
-
-
 
 /* --- Get data form API --- */
 
@@ -48,16 +45,17 @@ function getFav() {
 /* --- Create-sections Functions --- */
 
 //Create HTML tag
-function createTag(tag, className) {
+function createTag(tag, classCSS, classJS) {
   const newTag = document.createElement(tag);
-  newTag.classList.add(className);
+  newTag.classList.add(classCSS);
+  newTag.classList.add(classJS);
   return newTag;
 }
 
 //Create an article with title and background image
 function createBkgImgArticle(title, imgUrl, thisId) {
-  const thisMother = createTag('article', 'js-article');
-  const thisChild = createTag('h5', 'js-article-title');
+  const thisMother = createTag('article', 'res__card', 'js-article');
+  const thisChild = createTag('h5', 'res__card--title', 'js-article-title');
   const newTitle = document.createTextNode(title);
   thisMother.dataset.id = thisId;
   thisChild.appendChild(newTitle);
@@ -70,16 +68,39 @@ function createBkgImgArticle(title, imgUrl, thisId) {
 function setBkg(element, imgUrl) {
   const imgDefault =
     'https://via.placeholder.com/225x350/fff/666/?text=No+Picture';
-  if (imgUrl.includes('qm_50.gif') || imgUrl.includes('questionmark')) {
+  if (
+    imgUrl.includes('qm_50.gif') ||
+    imgUrl.includes('questionmark') ||
+    imgUrl === ''
+  ) {
     element.style.background = `url('${imgDefault}') center bottom / cover no-repeat`;
   } else {
     element.style.background = `url('${imgUrl}') center bottom / cover no-repeat`;
   }
 }
 
+//Create an article with title and little image
+function createListArticle(title, imgUrl, thisId) {
+  const thisMother = createTag('article', 'fav__card', 'js-article');
+  thisMother.dataset.id = thisId;
+  const thisChild1 = createTag('img', 'fav__card--img', 'js-article-img');
+  thisChild1.src = imgUrl;
+  const thisChild2 = createTag('h5', 'fav__card--title', 'js-article-title');
+  const newTitle = document.createTextNode(title);
+  thisChild2.appendChild(newTitle);
+  const thisChild3 = createTag('button', 'fav__card--button', 'js-delete-fav');
+  thisChild3.dataset.id = thisId;
+  const thisGrandChild = createTag('img', 'fav__card--icon', 'js-delete');
+  const deleteSvg = './assets/images/icons/delete.svg';
+  thisGrandChild.src = deleteSvg;
+  thisChild3.appendChild(thisGrandChild);
+  thisMother.append(thisChild1, thisChild2, thisChild3);
+  return thisMother;
+}
+
 //Paint results
 function createResults() {
-  const resultSection = createTag('section', 'js-results');
+  const resultSection = createTag('section', 'res', 'js-results');
   for (const item of result) {
     const article = createBkgImgArticle(
       item.title,
@@ -95,16 +116,13 @@ function createResults() {
 //Paint favorites
 function createFavs() {
   eraseSection('.js-favorites', mainFav);
-  const favSection = createTag('section', 'js-favorites');
+  const favSection = createTag('section', 'fav', 'js-favorites');
   for (const item of favorite) {
-    const article = createBkgImgArticle(
-      item.title,
-      item.image_url,
-      item.mal_id
-    );
+    const article = createListArticle(item.title, item.image_url, item.mal_id);
     favSection.appendChild(article);
   }
   mainFav.appendChild(favSection);
+  listenDeleteBtns();
 }
 
 /* --- Event Listener Functions --- */
@@ -124,16 +142,15 @@ function handleClickReset() {
   result = [];
   eraseSection('.js-results', mainRes);
 }
+
 form.addEventListener('reset', handleClickReset);
 
 //Listen to events in the results
 function handleClickCard(event) {
   const selectedCard = event.currentTarget;
-  const selectedTitle = selectedCard.querySelector('.js-article-title');
   const selectedId = selectedCard.dataset.id;
 
-  selectedCard.classList.toggle('js-selected');
-  selectedTitle.classList.toggle('js-selected-title');
+  selectedCard.classList.toggle('res__card--selected');
 
   checkFavorite(selectedId);
   createFavs();
@@ -146,6 +163,31 @@ function listenerCards() {
     card.addEventListener('click', handleClickCard);
   }
 }
+
+//Listen to delete-all-favorites event
+function handleDeleteAllFavs() {
+  localStorage.removeItem('fav');
+  favorite = [];
+  createFavs();
+}
+
+deleteAllFav.addEventListener('click', handleDeleteAllFavs);
+
+//Listen to delete-one-favorite event
+function handleDeleteFav(event) {
+  const selectedId = event.currentTarget.dataset.id;
+  checkFavorite(selectedId);
+  saveFav();
+  createFavs();
+}
+
+function listenDeleteBtns() {
+  const deleteFav = document.querySelectorAll('.js-delete-fav');
+  for (const deleteBtn of deleteFav) {
+    deleteBtn.addEventListener('click', handleDeleteFav);
+  }
+}
+
 
 /* --- Helper Functions --- */
 

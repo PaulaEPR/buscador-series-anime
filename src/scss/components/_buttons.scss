@@ -1,0 +1,40 @@
+.button {
+  font-family: $font-titles;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: $color-medium;
+  outline: 2px solid $color-first;
+  &:hover {
+    background-color: $color-first;
+    outline: 2px solid $color-medium;
+  }
+  &:active {
+    background-color: $color-dark;
+  }
+}
+
+.main__fav, .fav__card {
+  &--button {
+    font-size: 12px;
+    padding: 2px 4px;
+    margin-right: 2px;
+  }
+}
+
+.fav__card--button {
+  border: none;
+  border-radius: 5px;
+  background-color: $color-medium;
+  outline: 2px solid $color-first;
+  &:hover {
+    background-color: $color-first;
+    outline: 2px solid $color-medium;
+  }
+  &:active {
+    background-color: $color-dark;
+  }
+}

@@ -1,34 +1,70 @@
 body {
   background-color: $color-gr-dark;
+  padding: 0 10px;
+  height: 100vh;
 }
 
-.js-main {
+/* MAIN */
+
+.main {
+  //background-color: $color-gr-light;
+  min-height: 80%;
   display: grid;
   grid-template-columns: minmax(225px, 1fr) 3fr;
+  margin-bottom: 10px;
+
+  &__fav,
+  &__res {
+    padding: 0 10px;
+    margin-bottom: 10px;
+    //background-color: $color-gr-medium;
+    //min-height: 100%;
+    border: 2px solid $color-gr-medium;
+    border-radius: 5px;
+    
+    &--header {
+      display: flex;
+      //justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__res {
+    margin-left: 10px;
+  }
+
+  &__fav--header {
+    justify-content: space-between;
+  }
+  
+  &__fav--title,
+  &__res--title {
+    font-family: $font-titles;
+    color: $color-gr-light;
+    padding-left: 10px;
+  }
 }
 
-.js-results {
+.fav, .res {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding-bottom: 10px;
 }
 
-.js-favorites > .js-article {
- margin-bottom: 10px;
-}
+/* CARDS RESULTS */
 
-.js-article {
+.res__card {
   width: 225px;
   height: 350px;
-  //margin: 5px;
-  border: 5px solid $color-first;
+  border: 2px solid $color-light;
   border-radius: 5px;
   position: relative;
-  &-title {
-    color: $color-sec;
-    background-color: $color-first;
+  &--title {
+    color: $color-first;
+    background-color: $color-light;
     border-radius: 5px;
     height: 80px;
     padding: 5px;
@@ -37,81 +73,36 @@ body {
     width: 100%;
     margin: 5px;
   }
-}
-
-.js-selected {
-  border: 5px solid $color-sec;
-  &-title {
-    color: $color-first;
-    background-color: $color-sec;
-    height: 80px;
-    padding: 5px;
-  }
-}
-
-/* HEADER */
-.header {
-  padding: 15px;
-  font-family: $font-titles;
-  &__title {
-    font-family: $font-titles;
-    color: $color-gr-light;
-    margin-bottom: 10px;
-  }
-}
-
-/* MAIN */
-
-.main {
-  &__fav,
-  &__res {
-    padding: 0 10px;
-  }
-  &__fav--title,
-  &__res--title {
-    font-family: $font-titles;
-    color: $color-gr-light;
-    margin-bottom: 10px;
-  }
-}
-
-/* ICONS & BUTTONS */
-
-.icon {
-  width: 12px;
-}
-
-.search {
-  display: flex;
-  gap: 10px;
-  &__input {
-    outline: 2px solid $color-medium;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    &::placeholder {
-      color: $color-gr-medium;
-    }
-    &:focus {
-      outline: 2px solid $color-first;
-    }
-  }
-  &__button {
-    font-family: $font-titles;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: $color-medium;
-    outline: 2px solid $color-first;
-    &:hover {
+  &--selected {
+    border: 2px solid $color-first;
+    & > .res__card--title {
+      color: $color-sec;
       background-color: $color-first;
-      outline: 2px solid $color-medium;
-    }
-    &:active {
-      background-color: $color-dark;
+      height: 80px;
+      padding: 5px;
     }
   }
 }
+
+
+/* CARDS FAVORITES */
+
+.fav__card {
+  width: 100%;
+  padding: 3px 2px;
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr;
+  place-items: center;
+  gap: 10px;
+  border: 2px solid $color-first;
+  border-radius: 5px;
+  &--img {
+    width: 50px;
+  }
+  &--title {
+    color: $color-gr-medium;
+    text-align: left;
+  }
+}
+
+

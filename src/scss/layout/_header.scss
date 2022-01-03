@@ -1,0 +1,26 @@
+.header {
+  padding: 15px 2px;
+  font-family: $font-titles;
+  &__title {
+    font-family: $font-titles;
+    color: $color-gr-light;
+    margin-bottom: 10px;
+  }
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  &__input {
+    outline: 2px solid $color-medium;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    &::placeholder {
+      color: $color-gr-medium;
+    }
+    &:focus {
+      outline: 2px solid $color-first;
+    }
+  }
+}
