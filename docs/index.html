@@ -8,39 +8,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&family=Titillium+Web&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="icon" href="./assets/images/favicon.png" />
+    <link rel="icon" href="./assets/images/favicon.svg" />
   </head>
-
   <body>
     <header class="header">
       <h1 class="header__title">Buscador de animes</h1>
       <form action="#" method="post" class="search js-search">
         <input type="search" name="anime-search" id="anime-search" class="search__input js-input" placeholder="Naruto..." spellcheck="false" minlength="3" autofocus required>
-        <button type="submit" class="search__button button js-submit"><img src="./assets/images/icons/search.svg" alt="submit" class="icon--button">Buscar</button>
-        <button type="reset" class="search__button button"><img src="./assets/images/icons/reset.svg" alt="reset" class="icon--button">Reset</button>
-
-        
+        <button type="submit" class="search__button button"><img src="./assets/images/icons/search.svg" alt="submit" class="icon--button"><span class="button__title">Buscar</span></button>
+        <button type="reset" class="search__button button"><img src="./assets/images/icons/reset.svg" alt="reset" class="icon--button"><span class="button__title">Reset</span></button>
       </form>
     </header>
-    <main class="main js-main">
+    <main class="main">
       <section class="main__fav js-main-fav">
         <header class="main__fav--header">
           <img src="./assets/images/icons/favs.svg" alt="favs" class="icon--section">
-          <h2 class="main__fav--title">Favoritos</h2>
-          <button type="reset" class="main__fav--button button js-delete-all"><img src="./assets/images/icons/delete.svg" alt="delete" class="icon--button">Todos</button>
+          <h2 class="main__fav--title">Favs</h2>
+          <button type="reset" class="main__fav--button button js-delete-all"><img src="./assets/images/icons/delete.svg" alt="delete" class="icon--button"><span class="button__title">Todos</span></button>
         </header>
-        <section class="main__fav--section js-favorites"></section>
+        <section class="fav js-favorites"></section>
       </section>
       <section class="main__res js-main-res">
         <header class="main__res--header">
           <img src="./assets/images/icons/results.svg" alt="results" class="icon--section">
           <h2 class="main__res--title">Resultados</h2>
         </header>
-        <section class="main__res--section js-results"></section>
+        <section class="res js-results"></section>
       </section>
     </main>
-
-    
 
     <script src="./assets/js/main.js"></script>
   </body>
