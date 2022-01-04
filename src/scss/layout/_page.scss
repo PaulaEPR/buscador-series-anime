@@ -2,36 +2,50 @@ body {
   background-color: $color-gr-dark;
   padding: 0 10px;
   height: 100vh;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  @include tablet {
+    grid-template-rows: 80px 1fr; 
+  }
+  @include desktop {
+    max-width: 1310px;
+    justify-items: center;
+    margin: 0 auto;
+  }
 }
 
 /* MAIN */
 
 .main {
-  //background-color: $color-gr-light;
-  min-height: 80%;
   display: grid;
-  grid-template-columns: minmax(225px, 1fr) 3fr;
-  margin-bottom: 10px;
-
+  grid-template-columns: minmax(120px, 1fr) 3fr;
+  @include tablet {
+    grid-template-columns: minmax(225px, 1fr) 3fr;
+  }
+  
   &__fav,
   &__res {
-    padding: 0 10px;
     margin-bottom: 10px;
-    //background-color: $color-gr-medium;
-    //min-height: 100%;
     border: 2px solid $color-gr-medium;
     border-radius: 5px;
     
     &--header {
+      background-color: $color-gr-medium;
       display: flex;
-      //justify-content: space-between;
       align-items: center;
+      padding: 0 6px;
       margin-bottom: 10px;
+      @include tablet {
+        padding: 0 10px;
+      }
     }
   }
 
   &__res {
     margin-left: 10px;
+    &--title {
+      padding-left: 10px;
+    }
   }
 
   &__fav--header {
@@ -42,67 +56,81 @@ body {
   &__res--title {
     font-family: $font-titles;
     color: $color-gr-light;
-    padding-left: 10px;
+    font-size: 18px;
+    @include tablet {
+      font-size: 24px;
+    }
   }
 }
+
+/* CONTAINER CARDS */
 
 .fav, .res {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
-  padding-bottom: 10px;
+  padding: 0 10px 10px;
 }
 
 /* CARDS RESULTS */
 
 .res__card {
-  width: 225px;
-  height: 350px;
-  border: 2px solid $color-light;
+  width: 145px;
+  height: 225px;
+  border: 2px solid $color-gr-light;
   border-radius: 5px;
   position: relative;
+  margin-bottom: 30px;
+  @include tablet {
+    width: 225px;
+    height: 350px;
+  }
   &--title {
-    color: $color-first;
-    background-color: $color-light;
+    color: $color-gr-dark;
+    background-color: $color-gr-light;
     border-radius: 5px;
-    height: 80px;
+    height: 70px;
     padding: 5px;
     position: absolute;
-    bottom: 0;
+    bottom: -35px;
     width: 100%;
     margin: 5px;
+    overflow: hidden;
   }
   &--selected {
     border: 2px solid $color-first;
     & > .res__card--title {
       color: $color-sec;
       background-color: $color-first;
-      height: 80px;
-      padding: 5px;
     }
   }
 }
-
 
 /* CARDS FAVORITES */
 
 .fav__card {
   width: 100%;
   padding: 3px 2px;
-  display: grid;
-  grid-template-columns: 2fr 4fr 1fr;
-  place-items: center;
-  gap: 10px;
   border: 2px solid $color-first;
   border-radius: 5px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  grid-template-columns: 2fr 1fr;
+  @include tablet {
+    grid-template-columns: 2fr 4fr 1fr;
+  }
   &--img {
     width: 50px;
   }
   &--title {
     color: $color-gr-medium;
     text-align: left;
+    display: none;
+    @include tablet {
+      display: inline;
+    }
   }
 }
-
-

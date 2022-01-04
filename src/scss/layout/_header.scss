@@ -1,21 +1,42 @@
 .header {
-  padding: 15px 2px;
+  padding: 10px 2px;
   font-family: $font-titles;
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
   &__title {
     font-family: $font-titles;
+    font-size: 24px;
     color: $color-gr-light;
     margin-bottom: 10px;
+    @include tablet {
+      font-size: 32px;
+      margin-bottom: 0;
+      align-self: baseline;
+    }
   }
 }
 
 .search {
   display: flex;
+  align-items: center;
   gap: 10px;
+  @include tablet {
+    //height: 34px;
+  }
   &__input {
+    width: 100%;
     outline: 2px solid $color-medium;
     border: none;
     border-radius: 5px;
     padding: 5px;
+    @include tablet {
+      //width: 50%;
+    }
     &::placeholder {
       color: $color-gr-medium;
     }

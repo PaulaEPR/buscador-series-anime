@@ -1,40 +1,39 @@
+.button,
+.fav__card--button {
+  border: none;
+  border-radius: 5px;
+  background-color: $color-medium;
+  outline: 2px solid $color-first;
+  transition: background-color ease 0.3s, outline ease-in 0.5s;
+  &:hover {
+    background-color: $color-first;
+    outline: 2px solid $color-medium;
+  }
+  &:active {
+    background-color: $color-dark;
+    outline: 2px solid $color-sec;
+  }
+}
+
 .button {
   font-family: $font-titles;
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: $color-medium;
-  outline: 2px solid $color-first;
-  &:hover {
-    background-color: $color-first;
-    outline: 2px solid $color-medium;
-  }
-  &:active {
-    background-color: $color-dark;
+  &__title {
+    display: none;
+    @include tablet {
+      display: inline;
+    }
   }
 }
 
-.main__fav, .fav__card {
+.main__fav,
+.fav__card {
   &--button {
-    font-size: 12px;
+    font-size: 10px;
     padding: 2px 4px;
     margin-right: 2px;
-  }
-}
-
-.fav__card--button {
-  border: none;
-  border-radius: 5px;
-  background-color: $color-medium;
-  outline: 2px solid $color-first;
-  &:hover {
-    background-color: $color-first;
-    outline: 2px solid $color-medium;
-  }
-  &:active {
-    background-color: $color-dark;
   }
 }
