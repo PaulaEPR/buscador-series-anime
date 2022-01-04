@@ -23,6 +23,7 @@ function getData() {
     .then((data) => {
       result = data.results;
       createResults();
+      checkSelected();
     });
 }
 

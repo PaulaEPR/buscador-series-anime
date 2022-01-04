@@ -28,3 +28,23 @@ function checkFavorite(selectedId) {
 function eraseSection(childClass, motherName) {
   motherName.removeChild(document.querySelector(childClass));
 }
+
+//Check for favorites selected in the results
+function checkSelected() {
+  for (const item of result) {
+    for (const fav of favorite) {
+      if (item.mal_id === fav.mal_id) {
+        toggleSelectedClass(item.mal_id);
+      }
+    }
+  }
+}
+
+function toggleSelectedClass(selectedId) {
+  const cards = document.querySelectorAll('.js-article');
+  for (const card of cards) {
+    if (selectedId === parseInt(card.dataset.id)) {
+      card.classList.toggle('res__card--selected');
+    }
+  }
+}

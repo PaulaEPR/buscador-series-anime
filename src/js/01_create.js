@@ -47,7 +47,7 @@ function setBkg(element, imgUrl) {
 
 //Create an article with title and little image
 function createListArticle(title, imgUrl, thisId) {
-  const thisMother = createTagJS('article', 'fav__card', 'js-article');
+  const thisMother = createTagCSS('article', 'fav__card');
   thisMother.dataset.id = thisId;
   const thisChild1 = createTagCSS('img', 'fav__card--img');
   thisChild1.src = imgUrl;
