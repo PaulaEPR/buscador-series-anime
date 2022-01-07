@@ -70,3 +70,22 @@ function listenDeleteBtns() {
     deleteBtn.addEventListener('click', handleDeleteFav);
   }
 }
+
+//Listen total
+
+function handleTotalConsole() {
+  for (const item of global) {
+    if (result.length > item) {
+      console.log(`El número de resultados es ${result.length} y es mayor que ${item}`);
+    } else {
+      console.log(`El número de resultados es ${result.length} y es menor que ${item}`);
+    }
+    
+  }
+}
+
+function totalConsole() {
+  const totalGlobal = document.querySelector('.js-global');
+  totalGlobal.addEventListener('click', handleTotalConsole);
+}
+

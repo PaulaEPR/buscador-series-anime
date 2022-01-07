@@ -19,13 +19,17 @@ function createTagCSS(tag, classCSS) {
 }
 
 //Create an article with title and background image
-function createBkgImgArticle(title, imgUrl, thisId) {
+function createBkgImgArticle(title, imgUrl, thisId, thisDate) {
   const thisMother = createTagJS('article', 'res__card', 'js-article');
   const thisChild = createTagCSS('h5', 'res__card--title');
+  const thisChild2 = createTagCSS('p', 'res__card--date');
   const newTitle = document.createTextNode(title);
+  const newText = document.createTextNode(thisDate);
   thisMother.dataset.id = thisId;
   thisChild.appendChild(newTitle);
+  thisChild2.appendChild(newText);
   thisMother.appendChild(thisChild);
+  thisMother.appendChild(thisChild2);
   setBkg(thisMother, imgUrl);
   return thisMother;
 }
@@ -71,12 +75,18 @@ function createResults() {
     const article = createBkgImgArticle(
       item.title,
       item.image_url,
-      item.mal_id
+      item.mal_id,
+      item.start_date
     );
     resultSection.appendChild(article);
   }
+  const thisParagraph = createTagJS('p', 'res__card--total', 'js-global');
+  const textParagraph = document.createTextNode(result.length.toString());
+  thisParagraph.appendChild(textParagraph);
+  mainRes.appendChild(thisParagraph);
   mainRes.appendChild(resultSection);
   listenerCards();
+  totalConsole();
 }
 
 //Paint favorites
