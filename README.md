@@ -9,6 +9,8 @@ Buscador de series de anime que utiliza una API pública y te permite guardar tu
 
 [Buscador de series de anime](https://paulaepr.github.io/buscador-series-anime/)
 
+![Mockup Desktop Version](./src/images/readme/preview.jpg)
+
 ---
 ## Instalación y configuración
 
@@ -37,7 +39,7 @@ Ve a [http://localhost:3000](http://localhost:3000) para ver la app en el navega
 ### Desplegar el entorno de producción
 
 ```
-npm run build
+npm run deploy
 ```
 ---
 
@@ -83,6 +85,3 @@ Al hacer clic sobre una serie debe pasar lo siguiente:
 ### 6. BONUS: Afinar la maquetación
 
 - [x]  Libertad para decidir los estilos.
-
-**Vista previa:**
-![Mockup Desktop Version](./src/images/readme/preview.jpg)
