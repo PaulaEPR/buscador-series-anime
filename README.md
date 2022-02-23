@@ -1,8 +1,49 @@
-# Módulo 2: Ejercicio de evaluación final
+# Buscador de series de anime
+
+Buscador de series de anime que utiliza una API pública y te permite guardar tus animes favoritos. Puedes añadir o quitar los favoritos y estos se guardan en el local storage de tu navegador.
+
 [![Autor](https://img.shields.io/badge/autor-Paula%20Perera-red)](https://github.com/PaulaEPR)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-## Enunciado
+### ¿Dónde verlo?
+
+[Buscador de series de anime](https://paulaepr.github.io/buscador-series-anime/)
+
+---
+## Instalación y configuración
+
+**Requerimientos:** Necesitas tener `node` y `npm` instalados.
+
+### Clonar el repositorio
+
+```
+git clone URL
+```
+
+### Instalar las dependencias
+
+```
+npm install
+```
+
+### Ejecutar la aplicación
+
+```
+npm start
+```
+
+Ve a [http://localhost:3000](http://localhost:3000) para ver la app en el navegador.
+
+### Desplegar el entorno de producción
+
+```
+npm run build
+```
+---
+
+## Javascript: Ejercicio de evaluación
+
+El ejercicio consiste en hacer un buscador de series con los siguientes requerimientos:
 
 ### 1. Estructura básica
 
@@ -43,5 +84,5 @@ Al hacer clic sobre una serie debe pasar lo siguiente:
 
 - [x]  Libertad para decidir los estilos.
 
-**Propuesta gráfica:**
-![Mockup Desktop Version](./src/images/readme/mockup.png)
+**Vista previa:**
+![Mockup Desktop Version](./src/images/readme/preview.jpg)
