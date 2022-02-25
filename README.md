@@ -45,7 +45,7 @@ npm run deploy
 
 ## Javascript: Ejercicio de evaluación
 
-El ejercicio consiste en hacer un buscador de series con los siguientes requerimientos:
+El ejercicio consiste en hacer un buscador de series en Javascript con los siguientes requerimientos:
 
 ### 1. Estructura básica
 
